@@ -5,17 +5,22 @@ export default class Todo extends React.Component {
   state = {
     todo: ''
   }
+  textInput = React.createRef();
 
   render() {
-    console.log(this.props);
     const updateState = el => this.setState({ todo: el.target.value});
     const addTodoHandler = () => {
-      this.props.addTodo(this.state.todo);
+      if (this.state.todo !== '') {
+        console.log(this.textInput);
+        this.props.addTodo(this.state.todo);
+        // テキストの中身をクリアする
+        this.textInput.current.value = '';
+      }
     }
     const list = this.props.todo.todoList.map((todo, index) => <li key={index}>{todo}</li>);
     return (
       <div className="App">
-        <input type="text" onChange={updateState} />
+        <input type="text" onChange={updateState} ref={this.textInput} />
         <button onClick={addTodoHandler}>追加</button><br />
         <ul>
           {list}
