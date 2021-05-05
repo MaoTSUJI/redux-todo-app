@@ -2,8 +2,9 @@
 
 // 単純なオブジェクトを作成する
 export const addTodo = (todo) => {
+  console.log('addTodo');
   return {
     type: 'ADD_TODO',     // typeプロパティを必ず持つ。これが処理のキーになる。
-    payload: {todo: todo} // 処理に使うパラメータ。　ここでは追加するTODOをもたせておく。
+    payload: { todo: todo } // 処理に使うパラメータ。　ここでは追加するTODOをもたせておく。
   }
 }
